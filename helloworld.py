@@ -1,5 +1,5 @@
 def main():
 
-    print('hello world')
+    print('barack obama')
 
 main()
