@@ -27,6 +27,8 @@ class Meeting_Minutes(models.Model):
 
     class Meta:
         db_table = 'Meeting Minutes'
+        verbose_name_plural = 'Meeting Minutes'
+        
 
 
 class Resource(models.Model):
