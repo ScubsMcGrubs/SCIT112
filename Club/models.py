@@ -3,14 +3,14 @@ from django.contrib.auth.models import User
 
 
 class Meeting(models.Model):
-    title = models.CharField(max_length = 255)
+    meetName = models.CharField(max_length = 255)
     date = models.DateField()
     time = models.TimeField()
     location = models.TextField()
     adjenda = models.TextField()
     
     def __str__(self):
-        return self.title
+        return self.meetName
 
     class Meta:
         db_table = 'Meeting'
@@ -47,13 +47,13 @@ class Resource(models.Model):
 
 
 class Event(models.Model):
-    title = models.CharField(max_length = 255)
+    eventName = models.CharField(max_length = 255)
     location = models.TextField()
     date = models.DateField()
     time = models.TimeField()
 
     def __str__(self):
-        return self.title
+        return self.eventName
 
     class Meta:
         db_table = 'Event'
