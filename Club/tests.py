@@ -1,6 +1,8 @@
 from django.test import TestCase
 from .models import Meeting, Meeting_Minutes, Resource, Event
+from django.contrib.auth.models import User
 from .forms import ResourceForm, MeetingForm
+from django.urls import reverse_lazy, reverse
 
 class MeetingTest(TestCase):
     def setUp(self):
@@ -78,6 +80,15 @@ class NewResourceForm(TestCase):
         form = ResourceForm(data)
         self.assertFalse(form.is_valid)
 
+
+class NewMeetingAuthenticationsTest(TestCase):
+    def setUp(self):
+        self.test_user = User.objects.create_user(username = 'testuser1', password = 'P@ssw0rd')
+        self.meeting = Meeting('Urgent Meeting', '03/01/21', '15:00:00', 'Python Club HQ', 'We will discuss stuff')
+
+    def test_redirect_if_not_logged_in(self):
+        response = self.client.get(reverse('newmeeting'))
+        self.assertRedirects(response, 'accounts/login/?next=/club/newmeeting/')
 
         
 # Create your tests here.
